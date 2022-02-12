@@ -3,11 +3,15 @@
 	Date: 2022/02/12
 	Info: Practice c language basic grammar.
 */
+
 // preprocessor define.
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+
+#define HELLO "HELLO WORLD"
+#undef HELLO
 
 typedef unsigned char BYTE;
 typedef int* intptr;
@@ -21,15 +25,15 @@ struct fraction {
 
 typedef struct {
 	int32_t val;
-}valstr;
+} valstr;
 
-typedef union{
+typedef union {
 	short count;
 	float weight;
 	float volume;
-}quantity;
+} quantity;
 
-enum colors{
+enum colors {
 	RED,
 	GREEN,
 	BLUE
@@ -93,15 +97,15 @@ void test_struct() {
 	struct fraction ff2 = {
 		1,2,"TEST"
 	};
-	
+
 	ff.numeration = 22;
 	ff2.numeration = 33;
 }
 
-void test_struct2(struct fraction* t){
+void test_struct2(struct fraction* t) {
 	t->numeration = t->numeration+1;
 	(*t).numeration = (*t).numeration+2;
-	
+
 	t->denominator = t->denominator+100;
 }
 
@@ -157,12 +161,19 @@ int main(int argc, char *argv[]) {
 	struct fraction f11 = {
 		2,3,"TE"
 	};
-	
+
 	test_struct2(&f11);
 	printf("\n");
 	printf("%d %d\n", f11.numeration, f11.denominator);
 
-printf("%d\n", RED);
+	printf("%d\n", RED);
+
+	printf("%s,%s,%s,%s\n",  __DATE__,__FILE__,
+	       __TIME__,__STDC_VERSION__);
+
+	char ch;
+	ch = getchar();
+	printf("%c", ch);
 
 	return 0;
 }
