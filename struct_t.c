@@ -31,8 +31,10 @@ static void decrementForbidv3(const uint32_t* const v1) {
 
 void print_int_star(int* arr, int size) {
 	for(int i =0; i<size; ++i) {
-		printf("%d,", arr[i]);
+		printf("%d ", arr[i]);
 	}
+
+    printf("\n");
 }
 
 // up and below is equal.

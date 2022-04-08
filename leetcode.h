@@ -9,5 +9,5 @@ int* twoSum2(int* nums, int numsSize, int target, int* returnSize);
 int orangesRotting(int** grid, int gridSize, int* gridColSize);
 int orangesRotting2(int** grid, int gridSize, int* gridColSize);
 
-int compareHashMap(void* element1, void* element2);
+
 #endif

@@ -51,4 +51,6 @@ typedef struct vector Vector;
 typedef struct map HashMap;
 
 void print_int_star();
+
+int compareHashMap(void* element1, void* element2);
 #endif
