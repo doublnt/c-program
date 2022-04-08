@@ -131,3 +131,10 @@ void print_ts() {
 	printf("%s,%s,%s,%s\n",  __DATE__,__FILE__,
 	       __TIME__,__STDC_VERSION__);
 }
+
+int compareHashMap(void* element1, void* element2) {
+	HashMap* node1 = (HashMap*)element1;
+	HashMap* node2 = (HashMap*)element2;
+
+	return node1->value - node2->value;
+}

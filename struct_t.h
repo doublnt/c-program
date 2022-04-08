@@ -7,31 +7,37 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 typedef struct treeNode* PtrToNode;
 
-struct treeNode{
-	char* val;
-	PtrToNode FirstChild;
-	PtrToNode NextSibling;
+struct treeNode {
+    char* val;
+    PtrToNode FirstChild;
+    PtrToNode NextSibling;
 };
 
 struct fraction {
-	int32_t numeration;
-	int32_t denominator;
-	char* c_arr;
+    int32_t numeration;
+    int32_t denominator;
+    char* c_arr;
 };
 
-union quantity{
-	short count;
-	float weight;
-	float volume;
+union quantity {
+    short count;
+    float weight;
+    float volume;
 };
 
-struct vector{
-	int x;
-	int y;
-} ;
+struct vector {
+    int x;
+    int y;
+};
+
+struct map {
+    int index;
+    int value;
+};
 
 typedef unsigned char BYTE;
 typedef int* intptr;
@@ -42,6 +48,7 @@ typedef union quantity Quantity;
 
 typedef struct vector Vector;
 
+typedef struct map HashMap;
 
 void print_int_star();
 #endif
