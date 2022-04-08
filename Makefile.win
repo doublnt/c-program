@@ -1,17 +1,17 @@
 # Project: c-program
 # Makefile created by Embarcadero Dev-C++ 6.3
 
-CPP      = g++.exe
-CC       = gcc.exe
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = main.o
-LINKOBJ  = main.o
-LIBS     = -L"D:/Tools/Dev-Cpp/TDM-GCC-64/lib" -L"D:/Tools/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc
+OBJ      = main.o search_tree.o struct_t.o
+LINKOBJ  = main.o search_tree.o struct_t.o
+LIBS     = -L"D:/Tools/Dev-Cpp/TDM-GCC-64/lib" -L"D:/Tools/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -g3
 INCS     = -I"D:/Tools/Dev-Cpp/TDM-GCC-64/include" -I"D:/Tools/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/Tools/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"D:/Tools/Dev-Cpp/TDM-GCC-64/include" -I"D:/Tools/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/Tools/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"D:/Tools/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
 BIN      = c-program.exe
-CXXFLAGS = $(CXXINCS) 
-CFLAGS   = $(INCS) 
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
 DEL      = D:\Tools\Dev-Cpp\devcpp.exe INTERNAL_DEL
 
 .PHONY: all all-before all-after clean clean-custom
@@ -26,3 +26,9 @@ $(BIN): $(OBJ)
 
 main.o: main.c
 	$(CC) -c main.c -o main.o $(CFLAGS)
+
+search_tree.o: search_tree.c
+	$(CC) -c search_tree.c -o search_tree.o $(CFLAGS)
+
+struct_t.o: struct_t.c
+	$(CC) -c struct_t.c -o struct_t.o $(CFLAGS)

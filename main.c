@@ -5,175 +5,243 @@
 */
 
 // preprocessor define.
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
+#include "main.h"
 
-#define HELLO "HELLO WORLD"
-#undef HELLO
+int orangesRotting(int** grid, int gridSize, int* gridColSize) {
+	int minutes = 0;
+	int loopCount = 0;
 
-typedef unsigned char BYTE;
-typedef int* intptr;
-typedef char* charstr;
+	while(1) {
+		for(uint8_t i = 0; i < gridSize; ++i) {
+			for(uint8_t j = 0; j < *gridColSize; ++j) {
+				if(grid[i][j] == 2) {
+					uint8_t check = 0;
+					if(j-1 >= 0 && grid[i][j-1] == 1) {
+						grid[i][j-1] = 2;
+						check = 1;
+					}
 
-struct fraction {
-	int32_t numeration;
-	int32_t denominator;
-	char* c_arr;
-};
+					if(j+1 < *gridColSize && grid[i][j+1] == 1) {
+						grid[i][j+1] = 2;
+						check = 1;
+					}
 
-typedef struct {
-	int32_t val;
-} valstr;
+					if(i-1 >=0 && grid[i-1][j] == 1) {
+						grid[i-1][j] = 2;
+						check = 1;
+					}
 
-typedef union {
-	short count;
-	float weight;
-	float volume;
-} quantity;
+					if(i+1 < gridSize && grid[i+1][j] == 1) {
+						grid[i+1][j] = 2;
+						check = 1;
+					}
 
-enum colors {
-	RED,
-	GREEN,
-	BLUE
-};
+					if(check == 1) {
+						minutes++;
+					}
+				}
+			}
+		}
 
-void increment(uint32_t* v1) {
-	*v1=*v1+1;
-}
+		uint8_t shouldBreak = 1;
+		for(uint8_t i = 0; i < gridSize; ++i) {
+			for(uint8_t j = 0 ; j < *gridColSize; ++j) {
+				if(grid[i][j] == 1) {
+					shouldBreak = 0;
+					break;
+				}
+			}
+		}
 
-void (*increment_ptr)(uint32_t*) = increment;
+		if(shouldBreak == 1) {
+			break;
+		}
 
-static void decrement(uint32_t* v1) {
-	*v1-=1;
-}
+		if( loopCount == gridSize * (*(gridColSize)) -1) {
+			return -1;
+		}
 
-
-static void decrementForbid(const uint32_t* v1) {
-	// Error not allowed to modify value, but can modify address.
-	// *v1 = 100;
-	int a = 12;
-	v1 = &a;
-	// but v1 address is danguage, it's gone after executed this method.
-}
-
-static void decrementForbidv2(uint32_t* const v1) {
-	uint32_t val1 = 100;
-	*v1 = 100;
-}
-
-static void decrementForbidv3(const uint32_t* const v1) {
-	uint32_t val1 = 100;
-	// double const is forbid both modify value and address.
-	//*v1 = 100;
-}
-
-void arr_ptr(uint32_t arr[], int len) {
-
-}
-
-// up and below is equal.
-void arr_ptr1(uint32_t* arr, int len) {
-	for(uint8_t i = 0; i < len; ++i) {
-		printf("%d,", *(arr+i));
+		loopCount ++;
 	}
+
+	return minutes;
 }
 
-void char_ptr1(char* arr) {
-	printf("\n");
-	for(uint8_t i=0; i<strlen(arr); ++i) {
-		printf("%c,", *(arr+i));
+int orangesRotting2(int** grid, int gridSize, int* gridColSize) {
+	int length = gridSize * (*gridColSize);
+	Vector arr[length];
+
+	// First filter the bad orange then cache index to local array.
+	for(int i = 0; i < gridSize; ++i) {
+		for(int j = 0; j < *gridColSize; ++j) {
+			int currentIndex = (*gridColSize)*i + j;
+			int val = *((*grid)+currentIndex);
+			if(val == 2) {
+				Vector temp = {.x = i, .y = j};
+				arr[currentIndex] = temp;
+			} else {
+				Vector temp = {.x = -1, .y = -1};
+				arr[currentIndex] = temp;
+			}
+		}
 	}
-	printf("\n");
+
+	// Calculate the total minutes used to make all orange bad.
+	int minutes = 0;
+	for(int i = 0; i < length; ++i) {
+		Vector v = arr[i];
+		int arr_index = i;
+		bool isExistGoodOrange = false;
+
+		if(v.x != -1 && v.y != -1) {
+			// Left
+			int index = (*gridColSize)*v.x + v.y -1;
+			if(index >= 0 && v.y - 1 >= 0 && *((*grid)+index) == 1) {
+				*((*grid)+index) = 2;
+
+				Vector temp = {.x = v.x, .y = v.y - 1};
+				arr[++arr_index] = temp;
+			}
+
+			// Right
+			index = (*gridColSize)*v.x + v.y + 1;
+			if(index >= 0 && v.y + 1 < gridSize && *((*grid)+index) == 1) {
+				*((*grid)+index) = 2;
+
+				Vector temp = {.x = v.x, .y = v.y + 1};
+				arr[++arr_index] = temp;
+			}
+
+			// Top
+			index = (*gridColSize)*(v.x-1) + v.y;
+			if(index >=0 && v.x - 1 > 0 && *((*grid)+index) == 1) {
+				*((*grid)+index) = 2;
+
+				Vector temp = {.x = v.x -1, .y = v.y};
+				arr[++arr_index] = temp;
+			}
+
+			// Bottom
+			index = (*gridColSize)*(v.x+1) + v.y;
+			if(index >=0 && v.x + 1 < *gridColSize && *((*grid)+index) == 1) {
+				*((*grid)+index) = 2;
+
+				Vector temp = {.x = v.x + 1, .y = v.y};
+				arr[++arr_index] = temp;
+			}
+
+			// Search current array check whether exist bad orange.
+			for(int i = 0; i < gridSize; ++i) {
+				for(int j = 0; j < *gridColSize; ++j) {
+					int currentIndex = (*gridColSize)*i + j;
+					if(*((*grid)+currentIndex) == 1) {
+						minutes++;
+						isExistGoodOrange = true;
+						break;
+					}
+				}
+
+				if(isExistGoodOrange) {
+					break;
+				}
+			}
+
+			if(!isExistGoodOrange) {
+				return minutes;
+			}
+		} else {
+			for(int i = 0; i < gridSize; ++i) {
+				for(int j = 0; j < *gridColSize; ++j) {
+					int currentIndex = (*gridColSize)*i + j;
+					if(*((*grid)+currentIndex) == 1) {
+						minutes++;
+						isExistGoodOrange = true;
+						break;
+					}
+				}
+
+				if(isExistGoodOrange) {
+					break;
+				}
+			}
+
+			if(isExistGoodOrange) {
+				return -1;
+			}
+		}
+	}
+
+	if(0 == minutes) {
+		return -1;
+	}
+
+	return minutes;
 }
 
-void test_struct() {
-	struct fraction ff = {
-		.numeration = 1,
-		.denominator = 2,
-	};
+int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+	returnSize = malloc(sizeof(int));
+	for(int i = 0; i < numsSize; ++i) {
+		for(int j = i+1; j< numsSize; ++j) {
+			if(nums[i] + nums[j] == target) {
+				(*returnSize) = 2;
+				int* a = malloc(sizeof(int) * 2);
+				a[0] = i;
+				a[1] = j;
 
-	struct fraction ff2 = {
-		1,2,"TEST"
-	};
+				return a;
+			}
+		}
+	}
 
-	ff.numeration = 22;
-	ff2.numeration = 33;
+	*returnSize = 0;
+	return NULL;
 }
 
-void test_struct2(struct fraction* t) {
-	t->numeration = t->numeration+1;
-	(*t).numeration = (*t).numeration+2;
+int* twoSum1(int* nums, int numsSize, int target, int* returnSize) {
+	returnSize = malloc(sizeof(int));
+	*returnSize = 2;
 
-	t->denominator = t->denominator+100;
+	int* temp = malloc(sizeof(int[2]));
+	bool isExist = false;
+
+	for(int i = 0; i < numsSize; ++i) {
+		if(*(nums+i) + *(nums+numsSize-i) == target) {
+			isExist = true;
+			temp[0] = i;
+			temp[1] = numsSize - i;
+		}
+	}
+
+	return temp;
 }
 
 int main(int argc, char *argv[]) {
-	short* p1 = NULL;
-	short s1 = 200;
-	p1 = &s1;
+//	int size_z  = 3;
+//	int* size_pointer = &size_z;
+//
+//	int v1[3][3] = {
+//		{
+//			2, 1, 1
+//		},
+//		{
+//			1, 1, 0
+//		},
+//		{
+//			0, 1, 1
+//		}
+//	};
+//	int* v1_pointer = &v1;
+//	int** arr_arr = &v1_pointer;
+//
+//	int val = orangesRotting2(arr_arr, size_z, size_pointer);
+//	printf("%d", val);
 
-	printf("pointer p1 is %p\n", p1);
-	printf("pointer p1 value is %d\n", *p1);
+	int target  = 9;
+	int a[5] = { 1, 2, 3, 4, 5};
+	int* a3 = &a[0];
+	int* length;
 
-	unsigned char uc1; /* 0-255  -128-127 1 byte*/
-	unsigned short us1;
-	unsigned int ui1;
-	uint8_t uint8t;
-	printf("size of %d\n", sizeof(uint8t));
-	uint16_t uint16t;
-	printf("size of %d\n", sizeof(uint16t));
-	uint32_t uint32t;
-	uint64_t uint64t;
-
-	unsigned long ul1;
-	unsigned long long ull1;
-	printf("%d\n", sizeof(ull1));
-
-	char** pp1;
-	uint32_t uint32t1 = 10;
-	increment(&uint32t1);
-	printf("%d\n", uint32t1);
-
-	increment_ptr(&uint32t1);
-	printf("%d\n", uint32t1);
-
-	uint32_t arr[5];
-	arr_ptr1(arr, 5);
-
-	printf("\n");
-	char c_arr[5] = {'H','E','L','L','A'};
-	printf("%d\n", sizeof(c_arr));
-	char_ptr1(c_arr);
-
-	char c_arr2[5] = "Hello";
-	char_ptr1(c_arr2);
-
-	char* c_arr3 = "World";
-	printf("%d\n", sizeof(c_arr3));
-	printf("%d\n", strlen(c_arr3));
-
-	char c_arr4[] = "Points";
-	printf("%d\n", sizeof(c_arr4)); // 7 contains last char '\0'.
-	printf("%d\n", strlen(c_arr4)); // 6
-
-	struct fraction f11 = {
-		2,3,"TE"
-	};
-
-	test_struct2(&f11);
-	printf("\n");
-	printf("%d %d\n", f11.numeration, f11.denominator);
-
-	printf("%d\n", RED);
-
-	printf("%s,%s,%s,%s\n",  __DATE__,__FILE__,
-	       __TIME__,__STDC_VERSION__);
-
-	char ch;
-	ch = getchar();
-	printf("%c", ch);
-
+	int* a2 = twoSum(a3, 5, 9, length);
+	print_int_star(a2, 2);
 	return 0;
 }
