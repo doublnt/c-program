@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include "search_tree.h"
+#include "data_structure/include/search_tree.h"
 
 SearchTree MakeEmpty(SearchTree T) {
 	if(NULL != T) {

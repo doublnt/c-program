@@ -70,12 +70,12 @@ build CMakeFiles/c_program.dir/main.c.obj: C_COMPILER__c_program_Debug D$:/work/
   OBJECT_DIR = CMakeFiles\c_program.dir
   OBJECT_FILE_DIR = CMakeFiles\c_program.dir
 
-build CMakeFiles/c_program.dir/search_tree.c.obj: C_COMPILER__c_program_Debug D$:/work/c-program/search_tree.c || cmake_object_order_depends_target_c_program
-  DEP_FILE = CMakeFiles\c_program.dir\search_tree.c.obj.d
+build CMakeFiles/c_program.dir/data_structure/source/search_tree.c.obj: C_COMPILER__c_program_Debug D$:/work/c-program/data_structure/source/search_tree.c || cmake_object_order_depends_target_c_program
+  DEP_FILE = CMakeFiles\c_program.dir\data_structure\source\search_tree.c.obj.d
   FLAGS = -g -std=gnu11
   INCLUDES = -ID:/work/c-program/.
   OBJECT_DIR = CMakeFiles\c_program.dir
-  OBJECT_FILE_DIR = CMakeFiles\c_program.dir
+  OBJECT_FILE_DIR = CMakeFiles\c_program.dir\data_structure\source
 
 
 # =============================================================================
@@ -85,7 +85,7 @@ build CMakeFiles/c_program.dir/search_tree.c.obj: C_COMPILER__c_program_Debug D$
 #############################################
 # Link the executable c_program.exe
 
-build c_program.exe: C_EXECUTABLE_LINKER__c_program_Debug CMakeFiles/c_program.dir/struct_t.c.obj CMakeFiles/c_program.dir/leetcode.c.obj CMakeFiles/c_program.dir/main.c.obj CMakeFiles/c_program.dir/search_tree.c.obj
+build c_program.exe: C_EXECUTABLE_LINKER__c_program_Debug CMakeFiles/c_program.dir/struct_t.c.obj CMakeFiles/c_program.dir/leetcode.c.obj CMakeFiles/c_program.dir/main.c.obj CMakeFiles/c_program.dir/data_structure/source/search_tree.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\c_program.dir

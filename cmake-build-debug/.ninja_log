@@ -1,6 +1,6 @@
 # ninja log v5
 16	80	6711295588256360	CMakeFiles/c_program.dir/search_tree.c.obj	b725a8e3e342e437
-1	82	6711295588266358	CMakeFiles/c_program.dir/struct_t.c.obj	f706ee16b93b59fb
-13	83	6711295588276362	CMakeFiles/c_program.dir/main.c.obj	fce6384c8f33fa6
-11	91	6711295588356383	CMakeFiles/c_program.dir/leetcode.c.obj	604e87b10c64b2d
-91	192	6711295589346612	c_program.exe	c51c135641c40ea2
+2	88	6711944073873933	CMakeFiles/c_program.dir/struct_t.c.obj	f706ee16b93b59fb
+10	79	6711944073783918	CMakeFiles/c_program.dir/main.c.obj	fce6384c8f33fa6
+2	81	6711945492152991	CMakeFiles/c_program.dir/leetcode.c.obj	604e87b10c64b2d
+82	179	6711945493104389	c_program.exe	c51c135641c40ea2

@@ -9,10 +9,10 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-typedef struct treeNode* PtrToNode;
+typedef struct treeNode *PtrToNode;
 
 struct treeNode {
-    char* val;
+    char *val;
     PtrToNode FirstChild;
     PtrToNode NextSibling;
 };
@@ -20,7 +20,7 @@ struct treeNode {
 struct fraction {
     int32_t numeration;
     int32_t denominator;
-    char* c_arr;
+    char *c_arr;
 };
 
 union quantity {
@@ -39,18 +39,24 @@ struct map {
     int value;
 };
 
-typedef unsigned char BYTE;
-typedef int* intptr;
-typedef char* charstr;
+struct ListNode {
+    int val;
+    struct ListNode *next;
+};
 
+typedef unsigned char BYTE;
+typedef int *intptr;
+typedef char *charstr;
 typedef struct fraction Fraction;
 typedef union quantity Quantity;
-
 typedef struct vector Vector;
-
 typedef struct map HashMap;
+typedef struct ListNode ListNode;
 
 void print_int_star();
 
-int compareHashMap(void* element1, void* element2);
+int compareHashMap(void *element1, void *element2);
+
+void print_ListNode(ListNode *arr);
+
 #endif

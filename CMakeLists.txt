@@ -11,6 +11,6 @@ add_executable(c_program
         leetcode.c
         leetcode.h
         main.c
-        search_tree.c
-        search_tree.h
-        )
+        data_structure/source/search_tree.c
+        data_structure/include/search_tree.h
+        data_structure/include/list_node.h)

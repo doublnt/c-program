@@ -37,12 +37,17 @@ int main(int argc, char *argv[]) {
     int *a3 = &a[0];
     int *length;
 
-    int *a2 = twoSum2(a3, 5, 9, length);
+    int *a2 = twoSum2(a3, 5, target, length);
     print_int_star(a2, 2);
 
-    int *a4 = twoSum(a3, 5, 9, length);
+    int *a4 = twoSum(a3, 5, target, length);
     print_int_star(a4, 2);
 
+    int arr[5] = { 1, 2, 3, 4, 5};
+
+    ListNode *l1 = create_ListNode(arr, 5);
+
+    print_ListNode(l1);
 
     return 0;
 }

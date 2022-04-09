@@ -140,3 +140,11 @@ int compareHashMap(void* element1, void* element2) {
 
 	return node1->value - node2->value;
 }
+
+void print_ListNode(ListNode *arr){
+    while(arr != NULL){
+        printf("%d,", arr->val);
+
+        arr = arr->next;
+    }
+}
