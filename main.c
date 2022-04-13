@@ -58,16 +58,12 @@ int main(int argc, char *argv[]) {
     printListNode(root);
 
     positionNode = insertBefore(300, root, positionNode);
+    positionNode = insertBefore(301, root, positionNode);
     printListNode(root);
 
-//    positionNode = insertAfter(400, root, positionNode);
-//    printListNode(root);
-//
-//    insertAfter(500, root, positionNode);
-//    printListNode(root);
-
-//    deleteNode(insertedNode1->val, root);
-//    printListNode(root);
+    positionNode = insertAfter(400, root, positionNode);
+    positionNode = insertAfter(401, root, positionNode);
+    printListNode(root);
 
     return 0;
 }

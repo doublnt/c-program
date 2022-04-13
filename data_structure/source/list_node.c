@@ -6,11 +6,6 @@
 
 void printListNode(ListNode *listNode) {
     while (listNode != NULL) {
-        if (listNode->val == NULL) {
-            listNode = listNode->next;
-            continue;
-        }
-
         printf("%d,", listNode->val);
         listNode = listNode->next;
     }
@@ -19,13 +14,12 @@ void printListNode(ListNode *listNode) {
 }
 
 ListNode *createListNode(int *arr, int length) {
-    ListNode *root = malloc(sizeof(ListNode) * length);
-    root->next = NULL;
-
+    ListNode *root = insertBefore(arr[0], NULL, NULL);
     int i;
-    ListNode *position = root;
-    for (i = 0; i < length; ++i) {
-        position = insertAfter(arr[i], root, position);
+
+    ListNode *position = root->next;
+    for (i = 1; i < length; ++i) {
+        position = insertBefore(arr[i], root, position);
     }
 
     return root;
@@ -35,25 +29,30 @@ ListNode *createListNode(int *arr, int length) {
  * 插入到 position 后面
  */
 ListNode *insertAfter(int val, ListNode *list, ListNode *position) {
-    if (NULL == list) {
-        return NULL;
+    // 首个节点
+    if (list == NULL) {
+        ListNode *newNode = malloc(sizeof(ListNode));
+        newNode->val = val;
+        newNode->next = NULL;
+
+        return newNode;
     }
 
     ListNode *newNode = malloc(sizeof(ListNode));
     newNode->next = NULL;
-
-    if (list->next == NULL) {
-        list->next = newNode;
-        list->val = val;
-
-        return list;
-    }
-
     newNode->val = val;
 
     while (list != NULL) {
-        if (list == position) {
+        if (list->next == position && position != NULL) {
+            newNode->next = position->next;
             position->next = newNode;
+
+            break;
+        } else if (list == position || position == NULL) {
+            // 就在当前 root 位置后插入
+            newNode->next = list->next;
+            list->next = newNode;
+
             break;
         }
 
@@ -67,26 +66,24 @@ ListNode *insertAfter(int val, ListNode *list, ListNode *position) {
  * 插入到 position 前面
  */
 ListNode *insertBefore(int val, ListNode *list, ListNode *position) {
-    if (NULL == list) {
-        return NULL;
+    // 首个节点
+    if (list == NULL) {
+        ListNode *newNode = malloc(sizeof(ListNode));
+        newNode->val = val;
+        newNode->next = NULL;
+
+        return newNode;
     }
 
     ListNode *newNode = malloc(sizeof(ListNode));
     newNode->next = NULL;
-
-    if (list->next == NULL) {
-        list->next = newNode;
-        list->val = val;
-
-        return list;
-    }
-
     newNode->val = val;
 
     while (list != NULL) {
-        if (list == position) {
-            newNode->next = list->next;
+        if (list->next == position) {
             list->next = newNode;
+            newNode->next = position;
+
             break;
         }
 
