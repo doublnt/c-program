@@ -13,4 +13,4 @@ add_executable(c_program
         main.c
         data_structure/source/search_tree.c
         data_structure/include/search_tree.h
-        data_structure/include/list_node.h)
+        data_structure/include/list_node.h data_structure/source/list_node.c data_structure/include/base_include.h)

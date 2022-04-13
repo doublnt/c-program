@@ -3,11 +3,7 @@
 #ifndef STRUCT_T_H
 #define STRUCT_T_H
 
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdlib.h>
+#include "data_structure/include/base_include.h"
 
 typedef struct treeNode *PtrToNode;
 
@@ -39,11 +35,6 @@ struct map {
     int value;
 };
 
-struct ListNode {
-    int val;
-    struct ListNode *next;
-};
-
 typedef unsigned char BYTE;
 typedef int *intptr;
 typedef char *charstr;
@@ -51,12 +42,9 @@ typedef struct fraction Fraction;
 typedef union quantity Quantity;
 typedef struct vector Vector;
 typedef struct map HashMap;
-typedef struct ListNode ListNode;
 
 void print_int_star();
 
 int compareHashMap(void *element1, void *element2);
-
-void print_ListNode(ListNode *arr);
 
 #endif

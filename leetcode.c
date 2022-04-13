@@ -225,25 +225,6 @@ int *twoSum2(int *nums, int numsSize, int target, int *returnSize) {
     return returnNums;
 }
 
-ListNode *create_ListNode(int *arr, int length) {
-    ListNode *l1 = (ListNode *) malloc(sizeof(ListNode) * length);
-    if (length < 1) {
-        return l1;
-    }
-
-    l1->val = arr[0];
-
-    int i;
-    for (i = 1; i < length; ++i) {
-        ListNode *next = (ListNode *) malloc(sizeof(ListNode));
-        next->val = arr[i];
-
-        l1->next = next;
-    }
-
-    return l1;
-}
-
 ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
 
 }

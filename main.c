@@ -9,45 +9,65 @@
 #include "leetcode.h"
 
 int main(int argc, char *argv[]) {
-    int size_z = 3;
-    int *size_pointer = &size_z;
-
-    int v1[3][3] = {
-            {
-                    2, 1, 1
-            },
-            {
-                    1, 1, 0
-            },
-            {
-                    0, 1, 1
-            }
-    };
-    int *v1_pointer = &v1[0][0];
-    int **arr_arr = &v1_pointer;
-
-    int val = orangesRotting2(arr_arr, size_z, size_pointer);
-    printf("%d\n", val);
+//    int size_z = 3;
+//    int *size_pointer = &size_z;
+//
+//    int v1[3][3] = {
+//            {
+//                    2, 1, 1
+//            },
+//            {
+//                    1, 1, 0
+//            },
+//            {
+//                    0, 1, 1
+//            }
+//    };
+//    int *v1_pointer = &v1[0][0];
+//    int **arr_arr = &v1_pointer;
+//
+//    int val = orangesRotting2(arr_arr, size_z, size_pointer);
+//    printf("%d\n", val);
 
 //    int val2 = orangesRotting(arr_arr, size_z, size_pointer);
 //    printf("%\n", val2);
 
-    int target = 9;
-    int a[5] = {1, 2, 3, 4, 5};
-    int *a3 = &a[0];
-    int *length;
+//    int target = 9;
+//    int a[5] = {1, 2, 3, 4, 5};
+//    int *a3 = &a[0];
+//    int *length;
+//
+//    int *a2 = twoSum2(a3, 5, target, length);
+//    print_int_star(a2, 2);
+//
+//    int *a4 = twoSum(a3, 5, target, length);
+//    print_int_star(a4, 2);
 
-    int *a2 = twoSum2(a3, 5, target, length);
-    print_int_star(a2, 2);
+    int arr[5] = {1, 2, 3, 4, 5};
 
-    int *a4 = twoSum(a3, 5, target, length);
-    print_int_star(a4, 2);
+    ListNode *l1 = createListNode(arr, 5);
+    printListNode(l1);
 
-    int arr[5] = { 1, 2, 3, 4, 5};
+    ListNode *root = malloc(sizeof(ListNode));
+    root->val = 100;
 
-    ListNode *l1 = create_ListNode(arr, 5);
+    ListNode *positionNode = malloc(sizeof(ListNode));
+    positionNode->val = 200;
+    positionNode->next = NULL;
+    root->next = positionNode;
+    printListNode(root);
 
-    print_ListNode(l1);
+    positionNode = insertBefore(300, root, positionNode);
+    printListNode(root);
+
+//    positionNode = insertAfter(400, root, positionNode);
+//    printListNode(root);
+//
+//    insertAfter(500, root, positionNode);
+//    printListNode(root);
+
+//    deleteNode(insertedNode1->val, root);
+//    printListNode(root);
 
     return 0;
 }
