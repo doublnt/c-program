@@ -14,12 +14,12 @@ void printListNode(ListNode *listNode) {
 }
 
 ListNode *createListNode(int *arr, int length) {
-    ListNode *root = insertBefore(arr[0], NULL, NULL);
+    ListNode *root = insertAfter(arr[0], NULL, NULL);
     int i;
 
     ListNode *position = root->next;
     for (i = 1; i < length; ++i) {
-        position = insertBefore(arr[i], root, position);
+        position = insertAfter(arr[i], root, position);
     }
 
     return root;

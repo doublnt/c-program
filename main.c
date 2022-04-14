@@ -8,6 +8,10 @@
 
 #include "leetcode.h"
 
+void assign(ListNode *node) {
+    node = node->next;
+}
+
 int main(int argc, char *argv[]) {
 //    int size_z = 3;
 //    int *size_pointer = &size_z;
@@ -43,10 +47,10 @@ int main(int argc, char *argv[]) {
 //    int *a4 = twoSum(a3, 5, target, length);
 //    print_int_star(a4, 2);
 
-    int arr[5] = {1, 2, 3, 4, 5};
-
-    ListNode *l1 = createListNode(arr, 5);
-    printListNode(l1);
+//    int arr[5] = {1, 2, 3, 4, 5};
+//
+//    ListNode *l1 = createListNode(arr, 5);
+//    printListNode(l1);
 
     ListNode *root = malloc(sizeof(ListNode));
     root->val = 100;
@@ -54,16 +58,18 @@ int main(int argc, char *argv[]) {
     ListNode *positionNode = malloc(sizeof(ListNode));
     positionNode->val = 200;
     positionNode->next = NULL;
+
     root->next = positionNode;
+
     printListNode(root);
 
-    positionNode = insertBefore(300, root, positionNode);
-    positionNode = insertBefore(301, root, positionNode);
-    printListNode(root);
-
-    positionNode = insertAfter(400, root, positionNode);
-    positionNode = insertAfter(401, root, positionNode);
-    printListNode(root);
+//    positionNode = insertBefore(300, root, positionNode);
+//    positionNode = insertBefore(301, root, positionNode);
+//    printListNode(root);
+//
+//    positionNode = insertAfter(400, root, positionNode);
+//    positionNode = insertAfter(401, root, positionNode);
+//    printListNode(root);
 
     return 0;
 }
