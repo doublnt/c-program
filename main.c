@@ -6,7 +6,7 @@
 
 // preprocessor define.
 
-#include "leetcode.h"
+#include "data_structure/include/leetcode.h"
 
 void test_listNode() {
     int arr[5] = {1, 2, 3, 4, 5};
@@ -69,7 +69,7 @@ void test_array() {
 
 }
 
-int main(int argc, char *argv[]) {
+void test_listNode2() {
     int arr[1] = {0};
     int arr2[1] = {0};
 
@@ -78,6 +78,20 @@ int main(int argc, char *argv[]) {
 
     ListNode *l3 = addTwoNumbers(l1, l2);
     printListNode(l3);
+}
 
+int get_str_length(char *arr) {
+    int i = 0;
+    int count = 0;
+
+    while (arr[i++] != NULL) {
+        ++count;
+    }
+
+    return count;
+}
+
+int main(int argc, char *argv[]) {
+    char *arr = "TEST1";
     return 0;
 }

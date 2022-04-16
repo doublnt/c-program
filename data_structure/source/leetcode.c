@@ -1,4 +1,4 @@
-#include "leetcode.h"
+#include "data_structure/include/leetcode.h"
 
 int orangesRotting(int **grid, int gridSize, const int *gridColSize) {
     int minutes = 0;
@@ -297,4 +297,8 @@ ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
     }
 
     return root;
+}
+
+int lengthOfLongestSubstring(char *s) {
+    
 }

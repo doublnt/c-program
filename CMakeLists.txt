@@ -6,10 +6,10 @@ set(CMAKE_C_STANDARD 11)
 include_directories(.)
 
 add_executable(c_program
-        struct_t.c
-        struct_t.h
-        leetcode.c
-        leetcode.h
+        data_structure/source/struct_t.c
+        data_structure/include/struct_t.h
+        data_structure/source/leetcode.c
+        data_structure/include/leetcode.h
         main.c
         data_structure/source/search_tree.c
         data_structure/include/search_tree.h
