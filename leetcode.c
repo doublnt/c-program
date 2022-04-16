@@ -226,51 +226,74 @@ int *twoSum2(const int *nums, int numsSize, int target, int *returnSize) {
 }
 
 ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-    if (l1->next == NULL || l2->next == NULL) {
+    if (l1 == NULL || l2 == NULL) {
         return NULL;
     }
 
     ListNode *root = (ListNode *) malloc(sizeof(ListNode));
     int isUpVal = 0;
-    if (l1->val + l2->val - 10 >= 0) {
+    int val = l1->val + l2->val;
+
+    if (val + isUpVal - 10 >= 0) {
         isUpVal = (l1->val + l2->val) / 10;
-        root->val = l1->val + l2->val - 10;
+        val = val - 10;
     }
 
-    root->val = l1->val + l2->val;
+    root->val = val;
     root->next = NULL;
 
     l1 = l1->next;
     l2 = l2->next;
 
     while (l1 != NULL || l2 != NULL) {
-        ListNode *nextNode = (ListNode *) malloc(sizeof(ListNode));
-        int val = l1->val + l2->val + isUpVal;
+        if (l1 == NULL) {
+            while (l2 != NULL) {
+                val = isUpVal + l2->val;
+
+                if (val >= 10) {
+                    isUpVal = val / 10;
+                    val -= 10;
+                } else {
+                    isUpVal = 0;
+                }
+                insert_to_tail(val, root);
+
+                l2 = l2->next;
+            }
+            break;
+        } else if (l2 == NULL) {
+            while (l1 != NULL) {
+                val = isUpVal + l1->val;
+
+                if (val >= 10) {
+                    isUpVal = val / 10;
+                    val -= 10;
+                } else {
+                    isUpVal = 0;
+                }
+                insert_to_tail(val, root);
+
+                l1 = l1->next;
+            }
+            break;
+        }
+
+        val = l1->val + l2->val + isUpVal;
 
         if (isUpVal + l1->val + l2->val - 10 >= 0) {
             val = isUpVal + l1->val + l2->val - 10;
             isUpVal = (isUpVal + l1->val + l2->val) / 10;
-
-            nextNode->next = root->next;
-            nextNode->val = val;
-
-            root->next = nextNode;
         } else {
-            nextNode->next = root->next;
-            nextNode->val = val;
-
-            root->next = nextNode;
+            isUpVal = 0;
         }
 
-        if (l1->next == NULL) {
-            root->next = l2;
-        } else if (l2->next == NULL) {
-            root->next = l1;
-        }
-
+        insert_to_tail(val, root);
         l1 = l1->next;
         l2 = l2->next;
-        root = root->next;
+    }
+
+    if (isUpVal != 0) {
+        insert_to_tail(isUpVal, root);
     }
 
     return root;
