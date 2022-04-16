@@ -70,6 +70,19 @@ void test_array() {
 }
 
 int main(int argc, char *argv[]) {
-    test_listNode();
+    int arr[3] = {2, 4, 3};
+    int arr2[3] = {5, 6, 4};
+
+    ListNode *l1 = createListNode(arr, 3);
+    ListNode *l2 = createListNode(arr2, 3);
+
+//    ListNode *l3 = addTwoNumbers(l1, l2);
+
+    printf("Current struct address %p\n", &l2);
+    insert_to_head(6, &l2);
+
+    printf("Current struct address %p\n", &l1);
+    insert_to_tail(7, l1);
+
     return 0;
 }

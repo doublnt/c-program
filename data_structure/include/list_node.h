@@ -26,12 +26,12 @@ void printListNode(ListNode *listNode);
 ListNode *createListNode(int *arr, int length);
 
 /*
- * 向后插入
+ * 往当前位置的 向后插入
  */
 ListNode *insertAfter(int val, ListNode *list, ListNode *position);
 
 /*
- * 向前插入
+ * 往当前位置的 向前插入
  */
 ListNode *insertBefore(int val, ListNode *list, ListNode *position);
 
@@ -49,5 +49,15 @@ void freeListNode(ListNode *listNode);
  * 根据 value，查找 链表
  */
 ListNode *findListNode(ListNode *listNode, int value);
+
+/*
+ * 插入 到链表 末尾
+ */
+void insert_to_tail(int val, ListNode *root);
+
+/*
+ * 插入到 链表 表头
+ */
+void insert_to_head(int val, ListNode **root);
 
 #endif //C_PROGRAM_LIST_NODE_H

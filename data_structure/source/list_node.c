@@ -131,3 +131,44 @@ ListNode *findListNode(ListNode *listNode, int value) {
 
     return NULL;
 }
+
+void insert_to_tail(int val, ListNode *root) {
+    printf("Current struct address %p\n", &root);
+
+    if (root == NULL) {
+        return;
+    }
+
+    ListNode *node = (ListNode *) malloc(sizeof(ListNode));
+    node->val = val;
+    node->next = NULL;
+
+    while (root != NULL) {
+        if (root->next == NULL) {
+            root->next = node;
+            break;
+        }
+
+        root = root->next;
+    }
+}
+
+/*
+ * 用 List ** 的目的是 为了 传入的 地址和源地址 一致
+ */
+void insert_to_head(int val, ListNode **root) {
+    printf("Current struct address %p\n", root);
+
+    if (NULL == root) {
+        return;
+    }
+
+    ListNode *node = (ListNode *) malloc(sizeof(ListNode));
+
+    if (node != NULL) {
+        node->val = val;
+        node->next = (*root);
+
+        (*root) = node;
+    }
+}

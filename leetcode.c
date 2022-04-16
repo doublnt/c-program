@@ -1,6 +1,6 @@
 #include "leetcode.h"
 
-int orangesRotting(int **grid, int gridSize, int *gridColSize) {
+int orangesRotting(int **grid, int gridSize, const int *gridColSize) {
     int minutes = 0;
     int loopCount = 0;
 
@@ -60,7 +60,7 @@ int orangesRotting(int **grid, int gridSize, int *gridColSize) {
     return minutes;
 }
 
-int orangesRotting2(int **grid, int gridSize, int *gridColSize) {
+int orangesRotting2(int **grid, int gridSize, const int *gridColSize) {
     int length = gridSize * (*gridColSize);
     Vector arr[length];
 
@@ -171,7 +171,7 @@ int orangesRotting2(int **grid, int gridSize, int *gridColSize) {
     return minutes;
 }
 
-int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
+int *twoSum(const int *nums, int numsSize, int target, int *returnSize) {
     returnSize = malloc(sizeof(int));
     for (int i = 0; i < numsSize; ++i) {
         for (int j = i + 1; j < numsSize; ++j) {
@@ -190,7 +190,7 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
     return NULL;
 }
 
-int *twoSum2(int *nums, int numsSize, int target, int *returnSize) {
+int *twoSum2(const int *nums, int numsSize, int target, int *returnSize) {
     returnSize = malloc(sizeof(int));
     *returnSize = 2;
 
@@ -226,5 +226,52 @@ int *twoSum2(int *nums, int numsSize, int target, int *returnSize) {
 }
 
 ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+    if (l1->next == NULL || l2->next == NULL) {
+        return NULL;
+    }
 
+    ListNode *root = (ListNode *) malloc(sizeof(ListNode));
+    int isUpVal = 0;
+    if (l1->val + l2->val - 10 >= 0) {
+        isUpVal = (l1->val + l2->val) / 10;
+        root->val = l1->val + l2->val - 10;
+    }
+
+    root->val = l1->val + l2->val;
+    root->next = NULL;
+
+    l1 = l1->next;
+    l2 = l2->next;
+
+    while (l1 != NULL || l2 != NULL) {
+        ListNode *nextNode = (ListNode *) malloc(sizeof(ListNode));
+        int val = l1->val + l2->val + isUpVal;
+
+        if (isUpVal + l1->val + l2->val - 10 >= 0) {
+            val = isUpVal + l1->val + l2->val - 10;
+            isUpVal = (isUpVal + l1->val + l2->val) / 10;
+
+            nextNode->next = root->next;
+            nextNode->val = val;
+
+            root->next = nextNode;
+        } else {
+            nextNode->next = root->next;
+            nextNode->val = val;
+
+            root->next = nextNode;
+        }
+
+        if (l1->next == NULL) {
+            root->next = l2;
+        } else if (l2->next == NULL) {
+            root->next = l1;
+        }
+
+        l1 = l1->next;
+        l2 = l2->next;
+        root = root->next;
+    }
+
+    return root;
 }
