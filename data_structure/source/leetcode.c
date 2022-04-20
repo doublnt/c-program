@@ -300,5 +300,42 @@ ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
 }
 
 int lengthOfLongestSubstring(char *s) {
-    
+    int len = get_str_length(s);
+    HashSet *hashSet = (HashSet *) malloc(sizeof(HashSet));
+
+    int i = 0;
+    int j = 0;
+    int count = 0;
+    int setIndex = 0;
+    int maxLen = 0;
+
+    while (i < len && j < len) {
+        if (contains(&hashSet, count, s[j])) {
+            i++;
+            j = i;
+            setIndex = 0;
+
+            if (count > maxLen) {
+                maxLen = count;
+            }
+
+            count = 0;
+            free(hashSet);
+
+            hashSet = (HashSet *) malloc(sizeof(HashSet));
+        } else {
+            hashSet = realloc(hashSet, count + 1);
+
+            hashSet[setIndex++].value = s[j];
+            count++;
+
+            j++;
+        }
+    }
+
+    if (count > maxLen) {
+        return count;
+    }
+
+    return maxLen;
 }

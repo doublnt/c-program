@@ -3,6 +3,8 @@
 
 #include "data_structure/include/struct_t.h"
 #include "data_structure/include/list_node.h"
+#include "data_structure/include/str_oper.h"
+#include "data_structure/include/hashmap.h"
 
 int *twoSum(const int *nums, int numsSize, int target, int *returnSize);
 

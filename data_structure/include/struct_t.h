@@ -4,6 +4,7 @@
 #define STRUCT_T_H
 
 #include "data_structure/include/base_include.h"
+#include "hashmap.h"
 
 typedef struct treeNode *PtrToNode;
 
@@ -30,18 +31,12 @@ struct vector {
     int y;
 };
 
-struct map {
-    int index;
-    int value;
-};
-
 typedef unsigned char BYTE;
 typedef int *intptr;
 typedef char *charstr;
 typedef struct fraction Fraction;
 typedef union quantity Quantity;
 typedef struct vector Vector;
-typedef struct map HashMap;
 
 void print_int_star();
 
