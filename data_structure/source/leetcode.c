@@ -299,6 +299,12 @@ ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
     return root;
 }
 
+void initial_hashSet_to_empty(HashSet *hashSet, int len) {
+    for (int i = 0; i < len - 1; ++i) {
+        hashSet[i].value = '\0';
+    }
+}
+
 int lengthOfLongestSubstring(char *s) {
     int len = get_str_length(s);
     HashSet *hashSet = (HashSet *) malloc(sizeof(HashSet));
@@ -309,6 +315,8 @@ int lengthOfLongestSubstring(char *s) {
     int setIndex = 0;
     int maxLen = 0;
 
+    int hashSetCount = 1;
+
     while (i < len && j < len) {
         if (contains(&hashSet, count, s[j])) {
             i++;
@@ -318,13 +326,15 @@ int lengthOfLongestSubstring(char *s) {
             if (count > maxLen) {
                 maxLen = count;
             }
-
+            initial_hashSet_to_empty(hashSet, count);
             count = 0;
-            free(hashSet);
-
-            hashSet = (HashSet *) malloc(sizeof(HashSet));
         } else {
-            hashSet = realloc(hashSet, count + 1);
+            if (count > hashSetCount - 1) {
+                hashSetCount++;
+
+                // 不能直接 写 realloc 不赋值
+                hashSet = realloc(hashSet, hashSetCount);
+            }
 
             hashSet[setIndex++].value = s[j];
             count++;

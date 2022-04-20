@@ -8,7 +8,7 @@
 int get_str_length(char *arr) {
     int i = 0;
 
-    while (arr[i] != NULL) {
+    while (arr[i] != '\0') {
         ++i;
     }
 

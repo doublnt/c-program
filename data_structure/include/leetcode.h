@@ -17,5 +17,4 @@ int orangesRotting2(int **grid, int gridSize, const int *gridColSize);
 ListNode *addTwoNumbers(ListNode *l1, ListNode *l2);
 
 int lengthOfLongestSubstring(char *s);
-
 #endif
